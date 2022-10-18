@@ -1,6 +1,6 @@
 # looC API 명세서
 
-* 베이스 URL = JimNastycs.com:5000/looC
+* 베이스 URL = jimnastycs.com:5000/looC
 
 * 필수 헤더:
 “Content-Type”: “application/json”
