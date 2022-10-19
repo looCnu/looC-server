@@ -13,3 +13,10 @@ def sign_up(member: model.Member):
         return response
     else:
         return {'status': 400}
+
+def get_lectures():
+    response = model.get_lectures()
+    if response:
+        return response
+    else:
+        return {'status': 400}
