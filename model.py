@@ -22,6 +22,7 @@ class Lecture(BaseModel):
     credit: int
 
 def sign_in(member: Member):
+    response = make_response()
     m = hashlib.sha256()
     m.update(member.password.encode('utf-8'))
     member.password = m.hexdigest()
@@ -31,13 +32,11 @@ def sign_in(member: Member):
     if result:
         student_id = result.fetchall()[0][0]
         encoded = jwt.encode({'student_id': student_id}, 'JEfWefI0E1qlnIz06qmob7cZp5IzH/i7KwOI2xqWfhE=', algorithm='HS256')
-        response = make_response('', status=200}
         response.set_cookie('accessToken', encoded, max_age=60*60*2)
-        return response
-    else:
-        return None
+    return response
 
 def sign_up(member: Member):
+    response = make_response()
     m = hashlib.sha256()
     m.update(member.password.encode('utf-8'))
     member.password = m.hexdigest()
@@ -45,9 +44,10 @@ def sign_up(member: Member):
         'insert into member values (\"'+member.student_id+'\",\"'+member.password+'\",\"'+member.name+'\",\"'+member.college+'\")'
     )
     conn.commit()
-    return {'status': 200}
+    return response
 
 def get_lectures():
+    response = make_response()
     result = c.execute(
         'select * from lecture'
     )
@@ -55,6 +55,5 @@ def get_lectures():
         arr = []
         for temp in result:
             arr.push(Lecture(**temp).dict())
-        return make_response(arr, status=200)
-    else:
-        return make_response('', status=400)
+        response.data = arr
+    return response

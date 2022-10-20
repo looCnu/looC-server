@@ -2,21 +2,15 @@ import model
 
 def sign_in(member: model.Member):
     response = model.sign_in(member)
-    if response:
-        return response
-    else:
-        return {'status': 400}
+    response.status = 200
+    return response
 
 def sign_up(member: model.Member):
     response = model.sign_up(member)
-    if response:
-        return response
-    else:
-        return {'status': 400}
+    response.status = 200
+    return response
 
 def get_lectures():
     response = model.get_lectures()
-    if response:
-        return response
-    else:
-        return {'status': 400}
+    response.status = 200
+    return response
