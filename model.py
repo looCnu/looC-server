@@ -57,3 +57,10 @@ def get_lectures():
             arr.push(Lecture(**temp).dict())
         response.data = arr
     return response
+
+def get_lecture(lecture_id, name, category, credit):
+    response = make_response()
+    lecture_id = if lecture_id 'lecture_id="'+lecture_id+'"' else ''
+    category = if category 'category="'+category+ else ''
+    credit = if credit credit else ''
+
