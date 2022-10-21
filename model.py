@@ -21,6 +21,15 @@ class Lecture(BaseModel):
     description: str
     credit: int
 
+class Feed(BaseModel):
+    lecture_id: str
+    feed_id: str
+    contents: str
+
+class Comment(BaseModel):
+    feed_id: str
+    contents: str
+
 def verify():
     encoded = request.cookies.get('accessToken')
     decoded = jwt.decode(encoded, 'JEfWefI0E1qlnIz06qmob7cZp5IzH/i7KwOI2xqWfhE=', algorithms=["HS256"])
