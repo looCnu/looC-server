@@ -1,4 +1,5 @@
 import model
+from flask import make_response
 
 def verify():
     return model.verify()
@@ -14,11 +15,17 @@ def sign_up(member: model.Member):
     return response
 
 def get_lectures():
-    response = model.get_lectures()
-    response.status = 200
-    return response
+    if verify():
+        response = model.get_lectures()
+        response.status = 200
+        return response
+    else:
+        return make_response(status=401)
 
 def find_lectures(lecture_id, name, category, credit):
-    response = model.find_lectures(lecture_id, name, category, credit)
-    response.status = 200
-    return response
+    if verify():
+        response = model.find_lectures(lecture_id, name, category, credit)
+        response.status = 200
+        return response
+    else:
+        return make_response(status=401)
