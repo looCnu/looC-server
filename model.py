@@ -58,9 +58,23 @@ def get_lectures():
         response.data = arr
     return response
 
-def get_lecture(lecture_id, name, category, credit):
+def find_lectures(lecture_id, name, category, credit):
     response = make_response()
+    conditions = []
     lecture_id = if lecture_id 'lecture_id="'+lecture_id+'"' else ''
-    category = if category 'category="'+category+ else ''
-    credit = if credit credit else ''
-
+    if lecture_id: conditions.push(lecture_id)
+    category = if category 'category="'+category+'"' else ''
+    if category: conditions.push(category)
+    credit = if credit 'credit="'+credit+'"' else ''
+    if credit: conditions.push(credit)
+    condition_string = ' and '.join(conditions)
+    result = c.execute(
+        'select * from lecture where '+condition_string
+    )
+    if result:
+        arr = []
+        for temp in result:
+            arr.push(Lecture(**temp).dict())
+        response.data = arr
+    return response
+    

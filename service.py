@@ -15,7 +15,7 @@ def get_lectures():
     response.status = 200
     return response
 
-def get_lecture(lecture_id, name, category, credit):
-    response = model.get_lecture(lecture_id, name, category, credit)
+def find_lectures(lecture_id, name, category, credit):
+    response = model.find_lectures(lecture_id, name, category, credit)
     response.status = 200
     return response
