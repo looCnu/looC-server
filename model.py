@@ -21,6 +21,14 @@ class Lecture(BaseModel):
     description: str
     credit: int
 
+def verify():
+    encoded = request.cookies.get('accessToken')
+    decoded = jwt.decode(encoded, 'JEfWefI0E1qlnIz06qmob7cZp5IzH/i7KwOI2xqWfhE=', algorithms=["HS256"])
+    result = c.execute(
+        'select * from member where student_id="'+decoded['student_id']+'"'
+    )
+    return result
+
 def sign_in(member: Member):
     response = make_response()
     m = hashlib.sha256()

@@ -1,5 +1,8 @@
 import model
 
+def verify():
+    return model.verify()
+
 def sign_in(member: model.Member):
     response = model.sign_in(member)
     response.status = 200
