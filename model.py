@@ -21,13 +21,20 @@ class Lecture(BaseModel):
     description: str
     credit: int
 
+class eval(BaseModel):
+    lecture_id: str
+    eval_id: int
+    rating: float
+    contents: str
+
 class Feed(BaseModel):
     lecture_id: str
-    feed_id: str
+    feed_id: int
     contents: str
 
 class Comment(BaseModel):
-    feed_id: str
+    feed_id: int
+    comment_id: int
     contents: str
 
 def verify():
