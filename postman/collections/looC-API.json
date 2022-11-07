@@ -1,0 +1,278 @@
+{
+	"info": {
+		"_postman_id": "ea9fd416-5c93-401c-9e27-3b168ac2d3a4",
+		"name": "looC-API",
+		"description": "Keiya",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "15093408-ea9fd416-5c93-401c-9e27-3b168ac2d3a4"
+	},
+	"item": [
+		{
+			"name": "sign-up",
+			"id": "8bd520dc-d97a-4d19-91ec-91427c898cd8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"student_id\": \"201702007\",\n    \"password\": \"qwer\",\n    \"name\": \"Yongwoo Nam\",\n    \"college\": \"Computer Science\",\n    \"preference\": [\"sports\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/sign-up",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"sign-up"
+					]
+				},
+				"description": "회원가입"
+			},
+			"response": [
+				{
+					"id": "f62bc74e-ff64-46ea-a20b-66954affbc9c",
+					"name": "sign-up",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"student_id\": \"201702007\",\n    \"password\": \"qwer\",\n    \"name\": \"Yongwoo Nam\",\n    \"college\": \"Computer Science\",\n    \"preference\": [\"sports\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "172.16.0.94:5000/looC/sign-up",
+							"host": [
+								"172",
+								"16",
+								"0",
+								"94"
+							],
+							"port": "5000",
+							"path": [
+								"looC",
+								"sign-up"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.14"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Nov 2022 12:24:11 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "sign-in",
+			"id": "62e9adf2-38f8-4223-9390-8fbef8d9e64b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"student_id\": \"201702007\",\n    \"password\": \"qwerty\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/sign-in",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"sign-in"
+					]
+				},
+				"description": "로그인"
+			},
+			"response": [
+				{
+					"id": "a7553186-11d8-4ef4-b621-4b18ce82b187",
+					"name": "sign-in(correct)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"student_id\": \"201702007\",\n    \"password\": \"qwer\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "172.16.0.94:5000/looC/sign-in",
+							"host": [
+								"172",
+								"16",
+								"0",
+								"94"
+							],
+							"port": "5000",
+							"path": [
+								"looC",
+								"sign-in"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.14"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Nov 2022 12:30:37 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjAxNzAyMDA3In0.wv4FQPhizqMqAwvO0W-TFAxTf1YWDcPNDdpBV4HSHJk; Expires=Mon, 07 Nov 2022 14:30:37 GMT; Max-Age=7200; Path=/"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"id": "deccc41c-a35f-46c0-b35b-b796649e1922",
+					"name": "sign-in(wrong)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"student_id\": \"201702007\",\n    \"password\": \"qwerty\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/sign-in",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"sign-in"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.14"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Nov 2022 12:35:46 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "957eef05-3f9e-4c6e-8ff2-6578d4e76909",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6e2d16ed-4ff5-48ce-918c-60712d56f8b3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c1ec2750-0825-4b7c-912a-929daec1dcf8",
+			"key": "c1ec2750-0825-4b7c-912a-929daec1dcf8",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
