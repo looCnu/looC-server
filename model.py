@@ -90,11 +90,11 @@ def get_lectures():
 def find_lectures(lecture_id, name, category, credit):
     response = make_response()
     conditions = []
-    lecture_id = if lecture_id 'lecture_id="'+lecture_id+'"' else ''
+    lecture_id = lecture_id if 'lecture_id="'+lecture_id+'"' else ''
     if lecture_id: conditions.push(lecture_id)
-    category = if category 'category="'+category+'"' else ''
+    category = category if 'category="'+category+'"' else ''
     if category: conditions.push(category)
-    credit = if credit 'credit="'+credit+'"' else ''
+    credit = credit if 'credit="'+credit+'"' else ''
     if credit: conditions.push(credit)
     condition_string = ' and '.join(conditions)
     result = c.execute(
@@ -107,3 +107,15 @@ def find_lectures(lecture_id, name, category, credit):
         response.data = arr
     return response
     
+def get_posts():
+    response = make_response()
+    result = c.execute(
+        'select * from lecture'
+    )
+    if result:
+        arr = []
+        for temp in result:
+            arr.push(Lecture(**temp).dict())
+        response.data = arr
+    return response
+

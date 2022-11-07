@@ -29,3 +29,12 @@ def find_lectures(lecture_id, name, category, credit):
         return response
     else:
         return make_response(status=401)
+
+def get_posts():
+    if verify():
+        response = model.get_posts()
+        response.status = 200
+        return response
+    else:
+        return make_response(status=401)
+

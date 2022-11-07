@@ -27,7 +27,12 @@ def get_lectures():
     return response
 
 @bp.route('/find-lectures', methods=['GET'])
-def find_lectures(lecture_id='', name='', category='', credit=0):
+def find_lectures(lecture_id: str='', name: str='', category: str='', credit: int=0):
     response = service.find_lectures(lecture_id, name, category, credit)
+    return response
+
+@bp.route('/posts', methods=['POST'])
+def get_posts(lecture_id: str=''):
+    response = service.get_posts()
     return response
 
