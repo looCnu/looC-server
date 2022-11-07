@@ -1,5 +1,5 @@
 import sqlite3
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel
 from flask import make_response
 import jwt, hashlib
@@ -12,6 +12,7 @@ class Member(BaseModel):
     password: str
     name: Optional[str]
     college: Optional[str]
+    preference: Optional[List[str]]
 
 class Lecture(BaseModel):
     lecture_id: str
@@ -64,9 +65,13 @@ def sign_up(member: Member):
     m = hashlib.sha256()
     m.update(member.password.encode('utf-8'))
     member.password = m.hexdigest()
-    result = c.execute(
+    c.execute(
         'insert into member values (\"'+member.student_id+'\",\"'+member.password+'\",\"'+member.name+'\",\"'+member.college+'\")'
     )
+    for category in member.preference:
+        c.execute(
+            'insert into preference values(\"'+member.student_id+'\",\"'+category+'\")'
+        )
     conn.commit()
     return response
 
