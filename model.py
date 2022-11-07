@@ -54,7 +54,7 @@ def sign_in(member: Member):
     result = c.execute(
         'select student_id from member where student_id=\"'+member.student_id+'\" and password=\"'+member.password+'\"'
     )
-    if result:
+    if result.fetchall():
         student_id = result.fetchall()[0][0]
         encoded = jwt.encode({'student_id': student_id}, 'JEfWefI0E1qlnIz06qmob7cZp5IzH/i7KwOI2xqWfhE=', algorithm='HS256')
         response.set_cookie('accessToken', encoded, max_age=60*60*2)
