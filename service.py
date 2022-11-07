@@ -30,9 +30,9 @@ def find_lectures(lecture_id, name, category, credit):
     else:
         return make_response(status=401)
 
-def get_posts():
+def get_feeds(lecture_id):
     if verify():
-        response = model.get_posts()
+        response = model.get_feeds(lecture_id)
         response.status = 200
         return response
     else:

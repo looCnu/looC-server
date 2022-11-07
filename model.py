@@ -1,7 +1,8 @@
 import sqlite3
+import json
 from typing import Optional, List
 from pydantic import BaseModel
-from flask import make_response
+from flask import make_response, request
 import jwt, hashlib
 
 conn = sqlite3.connect('looC.db', check_same_thread=False)
@@ -48,16 +49,19 @@ def verify():
 
 def sign_in(member: Member):
     response = make_response()
+    data = { 'success': False }
     m = hashlib.sha256()
     m.update(member.password.encode('utf-8'))
     member.password = m.hexdigest()
     result = c.execute(
         'select student_id from member where student_id=\"'+member.student_id+'\" and password=\"'+member.password+'\"'
-    )
-    if result.fetchall():
-        student_id = result.fetchall()[0][0]
+    ).fetchall()
+    if result:
+        student_id = result[0][0]
         encoded = jwt.encode({'student_id': student_id}, 'JEfWefI0E1qlnIz06qmob7cZp5IzH/i7KwOI2xqWfhE=', algorithm='HS256')
         response.set_cookie('accessToken', encoded, max_age=60*60*2)
+        data['success'] = True
+    response.data = json.dumps(data)
     return response
 
 def sign_up(member: Member):
@@ -79,43 +83,66 @@ def get_lectures():
     response = make_response()
     result = c.execute(
         'select * from lecture'
-    )
+    ).fetchall()
     if result:
         arr = []
         for temp in result:
-            arr.push(Lecture(**temp).dict())
-        response.data = arr
+            lecture = Lecture(
+                lecture_id=temp[0],
+                name=temp[1],
+                category=temp[2],
+                time=temp[3],
+                description=temp[4],
+                credit=temp[5]
+            ).dict()
+            arr.append(lecture)
+        response.data = json.dumps(arr)
     return response
 
 def find_lectures(lecture_id, name, category, credit):
     response = make_response()
     conditions = []
-    lecture_id = lecture_id if 'lecture_id="'+lecture_id+'"' else ''
-    if lecture_id: conditions.push(lecture_id)
-    category = category if 'category="'+category+'"' else ''
-    if category: conditions.push(category)
-    credit = credit if 'credit="'+credit+'"' else ''
-    if credit: conditions.push(credit)
+    lecture_id = 'lecture_id="'+lecture_id+'"' if lecture_id else ''
+    if lecture_id: conditions.append(lecture_id)
+    name = 'name="'+name+'"' if name else ''
+    if name: conditions.append(name)
+    category = 'category="'+category+'"' if category else ''
+    if category: conditions.append(category)
+    credit = 'credit="'+credit+'"' if credit else ''
+    if credit: conditions.append(credit)
     condition_string = ' and '.join(conditions)
     result = c.execute(
         'select * from lecture where '+condition_string
-    )
+    ).fetchall()
     if result:
         arr = []
         for temp in result:
-            arr.push(Lecture(**temp).dict())
-        response.data = arr
+            lecture = Lecture(
+                lecture_id=temp[0],
+                name=temp[1],
+                category=temp[2],
+                time=temp[3],
+                description=temp[4],
+                credit=temp[5]
+            ).dict()
+            arr.append(lecture)
+        response.data = json.dumps(arr)
     return response
     
-def get_posts():
+def get_feeds(lecture_id):
     response = make_response()
     result = c.execute(
-        'select * from lecture'
-    )
+        'select * from feed where lecture_id="'+lecture_id+'"'
+    ).fetchall()
     if result:
         arr = []
         for temp in result:
-            arr.push(Lecture(**temp).dict())
-        response.data = arr
+            feed = Feed(
+                lecture_id = temp[0],
+                feed_id = temp[1],
+                contents = temp[2]
+            ).dict()
+            arr.append(feed)
+        response.data = json.dumps(arr)
     return response
 
