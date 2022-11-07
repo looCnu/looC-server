@@ -108,7 +108,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"student_id\": \"201702007\",\n    \"password\": \"qwerty\"\n}",
+					"raw": "{\n    \"student_id\": \"201702007\",\n    \"password\": \"qwer\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -241,6 +241,325 @@
 					],
 					"cookie": [],
 					"body": null
+				}
+			]
+		},
+		{
+			"name": "lectures",
+			"id": "66998397-e2fb-440c-9e0e-557cf3a79892",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/lectures",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"lectures"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "e46a3a5c-b1ef-4224-bf9d-a34ead744655",
+					"name": "lectures(single-row-response)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "172.16.0.94:5000/looC/lectures",
+							"host": [
+								"172",
+								"16",
+								"0",
+								"94"
+							],
+							"port": "5000",
+							"path": [
+								"looC",
+								"lectures"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.14"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Nov 2022 14:15:23 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "144"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "[{\"lecture_id\": \"123456781234\", \"name\": \"Linear Algebra\", \"category\": \"major\", \"time\": \"all-day\", \"description\": \"good at health\", \"credit\": 3}]"
+				}
+			]
+		},
+		{
+			"name": "find-lectures",
+			"id": "9b256ed4-778c-49ab-aae8-867e8773b5ba",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/find-lectures?lecture_id=123456781234&name=Linear Algebra&category=whatever&credit=1000000",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"find-lectures"
+					],
+					"query": [
+						{
+							"key": "lecture_id",
+							"value": "123456781234",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Linear Algebra",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "whatever",
+							"type": "text"
+						},
+						{
+							"key": "credit",
+							"value": "1000000",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "7e950de3-86f2-4103-91c3-7d22c6c4ecd2",
+					"name": "find-lectures(two params)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "172.16.0.94:5000/looC/find-lectures?lecture_id=123456781234&name=Linear Algebra&category&credit",
+							"host": [
+								"172",
+								"16",
+								"0",
+								"94"
+							],
+							"port": "5000",
+							"path": [
+								"looC",
+								"find-lectures"
+							],
+							"query": [
+								{
+									"key": "lecture_id",
+									"value": "123456781234",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Linear Algebra",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": null,
+									"type": "text"
+								},
+								{
+									"key": "credit",
+									"value": null,
+									"type": "text"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.14"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Nov 2022 14:19:44 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "144"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "[{\"lecture_id\": \"123456781234\", \"name\": \"Linear Algebra\", \"category\": \"major\", \"time\": \"all-day\", \"description\": \"good at health\", \"credit\": 3}]"
+				},
+				{
+					"id": "a52db6d5-9ded-4dcb-9b9b-3f9428037a73",
+					"name": "find-lectures(full params, no match)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/find-lectures?lecture_id=123456781234&name=Linear Algebra&category=whatever&credit=1000000",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"find-lectures"
+							],
+							"query": [
+								{
+									"key": "lecture_id",
+									"value": "123456781234",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Linear Algebra",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "whatever",
+									"type": "text"
+								},
+								{
+									"key": "credit",
+									"value": "1000000",
+									"type": "text"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.14"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Nov 2022 14:20:17 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "feeds",
+			"id": "deec961c-e253-4ad4-99ac-37f87d1a3948",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": [
+				{
+					"id": "5bc11e75-3379-4e46-ae5a-2e8424cf67e9",
+					"name": "feeds(single-row-result)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/feeds?lecture_id=123456781234",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"feeds"
+							],
+							"query": [
+								{
+									"key": "lecture_id",
+									"value": "123456781234",
+									"type": "text"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.14"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Nov 2022 14:22:11 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "66"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "[{\"lecture_id\": \"123456781234\", \"feed_id\": 1, \"contents\": \"good\"}]"
 				}
 			]
 		}
