@@ -20,7 +20,7 @@ def get_lectures():
         response.status = 200
         return response
     else:
-        return make_response(status=401)
+        return make_response('', 401)
 
 def find_lectures(lecture_id, name, category, credit):
     if verify():
@@ -28,7 +28,7 @@ def find_lectures(lecture_id, name, category, credit):
         response.status = 200
         return response
     else:
-        return make_response(status=401)
+        return make_response('', 401)
 
 def get_feeds(lecture_id):
     if verify():
@@ -36,5 +36,5 @@ def get_feeds(lecture_id):
         response.status = 200
         return response
     else:
-        return make_response(status=401)
+        return make_response('', 401)
 
