@@ -55,6 +55,16 @@ def get_keyword(lecture_id):
             arr.append(temp[0])
     return arr
 
+def get_score(lecture_id):
+    arr = []
+    result = c.execute(
+        'select rating from eval where lecture_id="'+lecture_id+'"'
+    ).fetchall()
+    if result:
+        for temp in result:
+            arr.append(float(temp[0]))
+    return sum(arr) / len(arr) if arr else 0
+
 def verify():
     encoded = request.cookies.get('accessToken')
     if not encoded: return False
@@ -115,7 +125,7 @@ def get_lectures():
                 professor=temp[7],
                 category=temp[8],
                 keword=get_keyword(temp[0]),
-                score=0
+                score=get_score(temp[0])
             ).dict()
             arr.append(lecture)
         response.data = json.dumps(arr)
