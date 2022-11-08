@@ -43,3 +43,10 @@ def get_feeds():
     response = service.get_feeds(lecture_id)
     return response
 
+@bp.route('/find-feeds', methods=['GET'])
+def find_feeds():
+    args = request.args
+    lecture_id = args.get('lecture_id')
+    title = args.get('title')
+    response = service.find_feeds(lecture_id, title)
+    return response

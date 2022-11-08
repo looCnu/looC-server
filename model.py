@@ -33,6 +33,7 @@ class eval(BaseModel):
 class Feed(BaseModel):
     lecture_id: str
     feed_id: int
+    title: str
     contents: str
 
 class Comment(BaseModel):
@@ -138,9 +139,28 @@ def get_feeds(lecture_id):
             feed = Feed(
                 lecture_id = temp[0],
                 feed_id = temp[1],
-                contents = temp[2]
+                title = temp[2],
+                contents = temp[3]
             ).dict()
             arr.append(feed)
         response.data = json.dumps(arr)
     return response
 
+def find_feeds(lecture_id, title):
+    response = make_response()
+    result = c.execute(
+        'select * from feed where lecture_id="'+lecture_id+'"'
+    ).fetchall()
+    if result:
+        arr = []
+        for temp in result:
+            feed = Feed(
+                lecture_id = temp[0],
+                feed_id = temp[1],
+                title = temp[2],
+                contents = temp[3]
+            )
+            cond_title = title in feed.title if title else True
+            if cond_title: arr.append(feed.dict())
+        response.data = json.dumps(arr)
+    return response

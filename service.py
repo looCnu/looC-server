@@ -38,3 +38,10 @@ def get_feeds(lecture_id):
     else:
         return make_response('', 401)
 
+def find_feeds(lecture_id, title):
+    if verify():
+        response = model.find_feeds(lecture_id, title)
+        response.status = 200
+        return response
+    else:
+        return make_response('', 401)
