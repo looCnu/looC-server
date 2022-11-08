@@ -18,13 +18,17 @@ class Member(BaseModel):
 class Lecture(BaseModel):
     lecture_id: str
     name: str
-    category: str
     time: str
     description: str
     credit: int
     image: str
+    room: str
+    professor: str
+    category: str
+    keword: List[str]
+    score: float 
 
-class eval(BaseModel):
+class Eval(BaseModel):
     lecture_id: str
     eval_id: int
     rating: float
@@ -93,11 +97,15 @@ def get_lectures():
             lecture = Lecture(
                 lecture_id=temp[0],
                 name=temp[1],
-                category=temp[2],
-                time=temp[3],
-                description=temp[4],
-                credit=temp[5],
-                image=temp[6]
+                time=temp[2],
+                description=temp[3],
+                credit=temp[4],
+                image=temp[5],
+                room=temp[6],
+                professor=temp[7],
+                category=temp[8],
+                keword=[],
+                score=0
             ).dict()
             arr.append(lecture)
         response.data = json.dumps(arr)
