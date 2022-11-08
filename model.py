@@ -22,6 +22,7 @@ class Lecture(BaseModel):
     time: str
     description: str
     credit: int
+    image: str
 
 class eval(BaseModel):
     lecture_id: str
@@ -41,6 +42,7 @@ class Comment(BaseModel):
 
 def verify():
     encoded = request.cookies.get('accessToken')
+    if not encoded: return False
     decoded = jwt.decode(encoded, 'JEfWefI0E1qlnIz06qmob7cZp5IzH/i7KwOI2xqWfhE=', algorithms=["HS256"])
     result = c.execute(
         'select * from member where student_id="'+decoded['student_id']+'"'
@@ -93,7 +95,8 @@ def get_lectures():
                 category=temp[2],
                 time=temp[3],
                 description=temp[4],
-                credit=temp[5]
+                credit=temp[5],
+                image=temp[6]
             ).dict()
             arr.append(lecture)
         response.data = json.dumps(arr)
@@ -123,7 +126,8 @@ def find_lectures(lecture_id, name, category, credit):
                 category=temp[2],
                 time=temp[3],
                 description=temp[4],
-                credit=temp[5]
+                credit=temp[5],
+                image=temp[6]
             ).dict()
             arr.append(lecture)
         response.data = json.dumps(arr)
