@@ -45,6 +45,16 @@ class Comment(BaseModel):
     comment_id: int
     contents: str
 
+def get_keyword(lecture_id):
+    arr = []
+    result = c.execute(
+        'select name from keyword where lecture_id="'+lecture_id+'"'
+    ).fetchall()
+    if result:
+        for temp in result:
+            arr.append(temp[0])
+    return arr
+
 def verify():
     encoded = request.cookies.get('accessToken')
     if not encoded: return False
@@ -104,7 +114,7 @@ def get_lectures():
                 room=temp[6],
                 professor=temp[7],
                 category=temp[8],
-                keword=[],
+                keword=get_keyword(temp[0]),
                 score=0
             ).dict()
             arr.append(lecture)
