@@ -30,6 +30,14 @@ def find_lectures(lecture_id, name, category, credit):
     else:
         return make_response('', 401)
 
+def get_evals(lecture_id):
+    if verify():
+        response = model.get_evals(lecture_id)
+        response.status = 200
+        return response
+    else:
+        return make_response('', 401)
+
 def get_feeds(lecture_id):
     if verify():
         response = model.get_feeds(lecture_id)

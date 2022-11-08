@@ -36,6 +36,13 @@ def find_lectures():
     response = service.find_lectures(lecture_id, name, category, credit)
     return response
 
+@bp.route('/evals', methods=['GET'])
+def get_evals():
+    args = request.args
+    lecture_id = args.get('lecture_id')
+    response = service.get_evals(lecture_id)
+    return response
+
 @bp.route('/feeds', methods=['GET'])
 def get_feeds():
     args = request.args
@@ -50,3 +57,4 @@ def find_feeds():
     title = args.get('title')
     response = service.find_feeds(lecture_id, title)
     return response
+

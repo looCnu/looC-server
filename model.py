@@ -155,6 +155,25 @@ def find_lectures(lecture_id, name, category, credit):
             if cond_lecture and cond_name and cond_category and cond_credit: arr.append(lecture.dict())
         response.data = json.dumps(arr)
     return response
+
+def get_evals(lecture_id):
+    response = make_response()
+    result = c.execute(
+        'select * from eval where lecture_id="'+lecture_id+'"'
+    ).fetchall()
+    if result:
+        arr = []
+        for temp in result:
+            _eval = Eval(
+                lecture_id = temp[0],
+                eval_id = temp[1],
+                rating = temp[2],
+                contents = temp[3]
+            ).dict()
+            arr.append(_eval)
+        response.data = json.dumps(arr)
+    return response
+
     
 def get_feeds(lecture_id):
     response = make_response()
