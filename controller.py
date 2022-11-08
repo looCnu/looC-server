@@ -58,3 +58,10 @@ def find_feeds():
     response = service.find_feeds(lecture_id, title)
     return response
 
+@bp.route('/comments', methods=['GET'])
+def get_comments():
+    args = request.args
+    feed_id = args.get('feed_id')
+    response = service.get_comments(feed_id)
+    return response
+

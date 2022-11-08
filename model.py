@@ -211,3 +211,22 @@ def find_feeds(lecture_id, title):
             if cond_title: arr.append(feed.dict())
         response.data = json.dumps(arr)
     return response
+
+def get_comments(feed_id):
+    response = make_response()
+    result = c.execute(
+        'select * from comment where feed_id='+feed_id
+    ).fetchall()
+    print(result)
+    if result:
+        arr = []
+        for temp in result:
+            comment = Comment(
+                feed_id = temp[0],
+                comment_id = temp[1],
+                contents = temp[2]
+            ).dict()
+            arr.append(comment)
+        response.data = json.dumps(arr)
+    return response
+

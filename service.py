@@ -53,3 +53,12 @@ def find_feeds(lecture_id, title):
         return response
     else:
         return make_response('', 401)
+
+def get_comments(feed_id):
+    if verify():
+        response = model.get_comments(feed_id)
+        response.status = 200
+        return response
+    else:
+        return make_response('', 401)
+
