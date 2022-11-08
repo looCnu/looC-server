@@ -104,18 +104,8 @@ def get_lectures():
 
 def find_lectures(lecture_id, name, category, credit):
     response = make_response()
-    conditions = []
-    lecture_id = 'lecture_id="'+lecture_id+'"' if lecture_id else ''
-    if lecture_id: conditions.append(lecture_id)
-    name = 'name="'+name+'"' if name else ''
-    if name: conditions.append(name)
-    category = 'category="'+category+'"' if category else ''
-    if category: conditions.append(category)
-    credit = 'credit="'+credit+'"' if credit else ''
-    if credit: conditions.append(credit)
-    condition_string = ' and '.join(conditions)
     result = c.execute(
-        'select * from lecture where '+condition_string
+        'select * from lecture'
     ).fetchall()
     if result:
         arr = []
@@ -128,8 +118,12 @@ def find_lectures(lecture_id, name, category, credit):
                 description=temp[4],
                 credit=temp[5],
                 image=temp[6]
-            ).dict()
-            arr.append(lecture)
+            )
+            cond_lecture = lecture_id==lecture.lecture_id if lecture_id else True
+            cond_name = name.lower() in lecture.name.lower() if name else True
+            cond_category = category==lecture.category if category else True
+            cond_credit = credit==lecture.credit if credit else True
+            if cond_lecture and cond_name and cond_category and cond_credit: arr.append(lecture.dict())
         response.data = json.dumps(arr)
     return response
     
