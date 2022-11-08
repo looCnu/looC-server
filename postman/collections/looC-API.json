@@ -265,22 +265,17 @@
 			},
 			"response": [
 				{
-					"id": "e46a3a5c-b1ef-4224-bf9d-a34ead744655",
-					"name": "lectures(single-row-response)",
+					"id": "7a854432-dbde-4a54-b3fe-bad26c3c42a5",
+					"name": "lectures",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "172.16.0.94:5000/looC/lectures",
+							"raw": "{{baseURL}}/lectures",
 							"host": [
-								"172",
-								"16",
-								"0",
-								"94"
+								"{{baseURL}}"
 							],
-							"port": "5000",
 							"path": [
-								"looC",
 								"lectures"
 							]
 						}
@@ -295,7 +290,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 07 Nov 2022 14:15:23 GMT"
+							"value": "Tue, 08 Nov 2022 13:58:57 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -303,7 +298,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "144"
+							"value": "258"
 						},
 						{
 							"key": "Connection",
@@ -311,13 +306,13 @@
 						}
 					],
 					"cookie": [],
-					"body": "[{\"lecture_id\": \"123456781234\", \"name\": \"Linear Algebra\", \"category\": \"major\", \"time\": \"all-day\", \"description\": \"good at health\", \"credit\": 3}]"
+					"body": "[{\"lecture_id\": \"123456781234\", \"name\": \"Linear Algebra\", \"time\": \"allday\\n\", \"description\": \"about linear algebra\", \"credit\": 3, \"image\": \"123456781234.jpeg\", \"room\": \"\\uacf55410\", \"professor\": \"Mano\", \"category\": \"major\", \"keword\": [\"math\"], \"score\": 3.0}]"
 				}
 			]
 		},
 		{
-			"name": "find-lectures",
-			"id": "9b256ed4-778c-49ab-aae8-867e8773b5ba",
+			"name": "evals",
+			"id": "911464a9-34ae-4f19-bbf6-ecf818e22bbc",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -325,32 +320,17 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/find-lectures?lecture_id=123456781234&name=Linear Algebra&category=whatever&credit=1000000",
+					"raw": "{{baseURL}}/evals?lecture_id=123456781234",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"find-lectures"
+						"evals"
 					],
 					"query": [
 						{
 							"key": "lecture_id",
 							"value": "123456781234",
-							"type": "text"
-						},
-						{
-							"key": "name",
-							"value": "Linear Algebra",
-							"type": "text"
-						},
-						{
-							"key": "category",
-							"value": "whatever",
-							"type": "text"
-						},
-						{
-							"key": "credit",
-							"value": "1000000",
 							"type": "text"
 						}
 					]
@@ -358,110 +338,23 @@
 			},
 			"response": [
 				{
-					"id": "7e950de3-86f2-4103-91c3-7d22c6c4ecd2",
-					"name": "find-lectures(two params)",
+					"id": "e3a9803b-97d5-4ee0-9fb8-0468de50e6dc",
+					"name": "evals",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "172.16.0.94:5000/looC/find-lectures?lecture_id=123456781234&name=Linear Algebra&category&credit",
-							"host": [
-								"172",
-								"16",
-								"0",
-								"94"
-							],
-							"port": "5000",
-							"path": [
-								"looC",
-								"find-lectures"
-							],
-							"query": [
-								{
-									"key": "lecture_id",
-									"value": "123456781234",
-									"type": "text"
-								},
-								{
-									"key": "name",
-									"value": "Linear Algebra",
-									"type": "text"
-								},
-								{
-									"key": "category",
-									"value": null,
-									"type": "text"
-								},
-								{
-									"key": "credit",
-									"value": null,
-									"type": "text"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "html",
-					"header": [
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.2.2 Python/3.9.14"
-						},
-						{
-							"key": "Date",
-							"value": "Mon, 07 Nov 2022 14:19:44 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "144"
-						},
-						{
-							"key": "Connection",
-							"value": "close"
-						}
-					],
-					"cookie": [],
-					"body": "[{\"lecture_id\": \"123456781234\", \"name\": \"Linear Algebra\", \"category\": \"major\", \"time\": \"all-day\", \"description\": \"good at health\", \"credit\": 3}]"
-				},
-				{
-					"id": "a52db6d5-9ded-4dcb-9b9b-3f9428037a73",
-					"name": "find-lectures(full params, no match)",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseURL}}/find-lectures?lecture_id=123456781234&name=Linear Algebra&category=whatever&credit=1000000",
+							"raw": "{{baseURL}}/evals?lecture_id=123456781234",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
-								"find-lectures"
+								"evals"
 							],
 							"query": [
 								{
 									"key": "lecture_id",
-									"value": "123456781234",
-									"type": "text"
-								},
-								{
-									"key": "name",
-									"value": "Linear Algebra",
-									"type": "text"
-								},
-								{
-									"key": "category",
-									"value": "whatever",
-									"type": "text"
-								},
-								{
-									"key": "credit",
-									"value": "1000000",
-									"type": "text"
+									"value": "123456781234"
 								}
 							]
 						}
@@ -476,7 +369,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 07 Nov 2022 14:20:17 GMT"
+							"value": "Tue, 08 Nov 2022 14:10:32 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -484,7 +377,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "0"
+							"value": "107"
 						},
 						{
 							"key": "Connection",
@@ -492,7 +385,7 @@
 						}
 					],
 					"cookie": [],
-					"body": null
+					"body": "[{\"lecture_id\": \"123456781234\", \"eval_id\": 1, \"rating\": 3.0, \"contents\": \"\\uc7ac\\ubbf8\\uc5c6\\uc5b4\\uc694\"}]"
 				}
 			]
 		},
@@ -506,7 +399,20 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "{{baseURL}}/feeds?lecture_id=123456781234",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"feeds"
+					],
+					"query": [
+						{
+							"key": "lecture_id",
+							"value": "123456781234",
+							"type": "text"
+						}
+					]
 				}
 			},
 			"response": [
@@ -517,11 +423,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/feeds?lecture_id=123456781234",
+							"raw": "172.16.0.94:5000/looC/feeds?lecture_id=123456781234",
 							"host": [
-								"{{baseURL}}"
+								"172",
+								"16",
+								"0",
+								"94"
 							],
+							"port": "5000",
 							"path": [
+								"looC",
 								"feeds"
 							],
 							"query": [
@@ -560,6 +471,175 @@
 					],
 					"cookie": [],
 					"body": "[{\"lecture_id\": \"123456781234\", \"feed_id\": 1, \"contents\": \"good\"}]"
+				}
+			]
+		},
+		{
+			"name": "find-feeds",
+			"id": "d0b0b1db-a3a3-4b77-a339-f1c06342f0f1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/find-feeds?lecture_id=123456781234&title=first",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"find-feeds"
+					],
+					"query": [
+						{
+							"key": "lecture_id",
+							"value": "123456781234",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "first",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "a158665e-6457-4a97-92ce-c660654cdb60",
+					"name": "find-feeds",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/find-feeds?lecture_id=123456781234&title=first",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"find-feeds"
+							],
+							"query": [
+								{
+									"key": "lecture_id",
+									"value": "123456781234",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "first",
+									"type": "text"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.14"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Nov 2022 13:04:26 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "92"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "[{\"lecture_id\": \"123456781234\", \"feed_id\": 1, \"title\": \"first feed\", \"contents\": \"kimochi\"}]"
+				}
+			]
+		},
+		{
+			"name": "comments",
+			"id": "fdad86d2-6012-4345-82dd-8e804bf72444",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/comments?feed_id=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"comments"
+					],
+					"query": [
+						{
+							"key": "feed_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "284cece3-72ad-4234-bc33-25a0b2595e7c",
+					"name": "comments",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/comments?feed_id=1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"comments"
+							],
+							"query": [
+								{
+									"key": "feed_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.14"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Nov 2022 14:22:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "62"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "[{\"feed_id\": 1, \"comment_id\": 1, \"contents\": \"first comment\"}]"
 				}
 			]
 		}
