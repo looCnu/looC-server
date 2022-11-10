@@ -25,7 +25,7 @@ class Lecture(BaseModel):
     room: str
     professor: str
     category: str
-    keword: List[str]
+    keyword: List[str]
     score: float 
 
 class Eval(BaseModel):
@@ -93,6 +93,7 @@ def sign_in(member: Member):
 
 def sign_up(member: Member):
     response = make_response()
+    data = { 'success': False }
     m = hashlib.sha256()
     m.update(member.password.encode('utf-8'))
     member.password = m.hexdigest()
@@ -104,6 +105,10 @@ def sign_up(member: Member):
             'insert into preference values(\"'+member.student_id+'\",\"'+category+'\")'
         )
     conn.commit()
+    encoded = jwt.encode({'student_id': member.student_id}, 'JEfWefI0E1qlnIz06qmob7cZp5IzH/i7KwOI2xqWfhE=', algorithm='HS256')
+    response.set_cookie('accessToken', encoded, max_age=60*60*2)
+    data['success'] = True
+    response.data = json.dumps(data)
     return response
 
 def get_lectures():
@@ -124,7 +129,7 @@ def get_lectures():
                 room=temp[6],
                 professor=temp[7],
                 category=temp[8],
-                keword=get_keyword(temp[0]),
+                keyword=get_keyword(temp[0]),
                 score=get_score(temp[0])
             ).dict()
             arr.append(lecture)
